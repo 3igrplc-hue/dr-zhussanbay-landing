@@ -105,16 +105,16 @@ const copy = (lang: Lang) => {
           "врождённые патологии",
         ]
       : [
-          "либидо төмендеуі",
-          "бедеулік / жоспарлау",
-          "мезгілсіз эякуляция",
-          "эректильді дисфункция",
-          "кіші дәрет ауырсынуы/жиілеуі",
+          "құлшыныс төмендеуі",
+          "бедеулік / бала жоспарлау",
+          "тез бітіру (мезгілсіз эякуляция)",
+          "эрекция әлсіздігі",
+          "жақындыққа ниет жоқ",
+          "кіші дәрет жиілеуі/ауырсынуы",
           "простатит",
           "варикоцеле / гидроцеле",
           "аденома",
-          "зәр түсі өзгеруі",
-          "туа біткен патологиялар",
+          "туа біткен мәселе",
         ],
 
     whyTitle: ru ? "Почему выбирают" : "Неге таңдайды",
@@ -173,7 +173,7 @@ const copy = (lang: Lang) => {
           {
             name: "Для детей",
             icon: Stethoscope,
-            items: ["Обрезание", "Крипторхизм", "Гипоспадия", "Детские урологические жалобы"],
+            items: ["Обрезание", "Крипторхизм", "Гипоспадия", "Скрытый половой член (СПЧ)", "Детские урологические жалобы"],
           },
           {
             name: "Для мужчин",
@@ -200,7 +200,7 @@ const copy = (lang: Lang) => {
           {
             name: "Балаларға",
             icon: Stethoscope,
-            items: ["Сүндеттеу", "Крипторхизм", "Гипоспадия", "Балалар урологиялық шағымдары"],
+            items: ["Сүндеттеу", "Крипторхизм", "Гипоспадия", "Жасырын жыныс мүшесі (СПЧ)", "Балалар урологиялық шағымдары"],
           },
           {
             name: "Ерлерге",
@@ -341,7 +341,11 @@ function Section({
   tone?: "plain" | "soft";
   children: React.ReactNode;
 }) {
-  const bg = tone === "soft" ? "bg-slate-50/70" : "bg-white";
+  // Soft sections: add a subtle medical-tint gradient instead of pure white
+  const bg =
+    tone === "soft"
+      ? "bg-gradient-to-b from-sky-50/60 via-white to-white"
+      : "bg-white";
   return (
     <section id={id} className={`border-t ${bg}`}>
       <Container>
@@ -467,7 +471,7 @@ export default function Landing({ lang }: { lang: Lang }) {
         <Container>
           <div className="py-10 md:py-14">
             <div className="grid gap-10 md:grid-cols-2 md:items-center">
-              <div className="anim-fadeUp">
+              <div className="order-2 anim-fadeUp md:order-1">
                 <div className="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-1 text-sm text-slate-700 shadow-sm">
                   <ShieldCheck className="h-4 w-4 text-sky-700" />
                   <span>{s.eyebrow}</span>
@@ -538,7 +542,7 @@ export default function Landing({ lang }: { lang: Lang }) {
                 </div>
               </div>
 
-              <div className="relative anim-fadeUp">
+              <div className="relative order-1 anim-fadeUp md:order-2">
                 <div className="absolute -inset-3 rounded-[32px] bg-gradient-to-b from-sky-200/40 to-white" />
                 <div className="relative overflow-hidden rounded-[28px] border bg-slate-50 shadow-sm">
                   <Image
